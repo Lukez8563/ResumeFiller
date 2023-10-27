@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+
+  "name": "Job Application Filler",
+  "description": "This extension fills job applications.",
+  "version": "1.1.0",
+
+  "permissions": ["tabs", "alarms", "activeTab", "scripting", "storage"],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": "logo.png",
+    "default_title": "Click to autofill application"
+  }
+}
