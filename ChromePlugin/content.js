@@ -231,33 +231,9 @@ function Main() {
     // Note in the console that the function is running
     console.log('Checking data...');
 
-
-    // The actual data
-    const values = {};
-    chrome.storage.local.get(['fullname']).then((result) => {
-      alert(result.fullname);
-      Object.assign(values, result);
-      if (result.fullname == null) {
-        chrome.storage.local.set({'fullname': prompt('What is your full name?')}).then(() => {
-        });
-      }
-    });
-    var namevals = [values.fullname];
-
-    chrome.storage.local.get(['firstname']).then((result) => {
-      if (result.firstname == null) {
-        var fnamevals = [prompt('What is your first name?')];
-        chrome.storage.local.set({'firstname': fnamevals[0]}).then(() => {
-        });
-      } else {
-        var fnamevals = [result.firstname];
-      }
-    });
-
-    alert(values.fullname);
-
+    var fnamevals = ['Tanner']
     var lnamevals = ['Eastmond']
-
+    var namevals = ['Tanner Eastmond']
     var phonevals = ['801-884-9185']
     var emailvals = ['tanner.s.eastmond@gmail.com']
     var addressvals = ['3869 Miramar St', 'Box 3534']
