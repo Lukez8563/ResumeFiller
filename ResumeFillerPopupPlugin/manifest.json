@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+
+  "name": "Extension Test",
+  "description": "Test Basic Extension Features",
+  "version": "1.0.0",
+
+  "permissions": ["tabs", "alarms", "activeTab", "scripting", "storage"],
+
+  "action": {
+    "default_icon": "logo.png",
+    "default_title": "Click to test",
+    "default_popup": "popup.html"
+  }
+}
