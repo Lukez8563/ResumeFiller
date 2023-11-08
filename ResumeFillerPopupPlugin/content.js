@@ -230,10 +230,8 @@ function Main() {
 
     // Note in the console that the function is running
     console.log('Checking data...');
-    var temp = sessionStorage.getItem("temp");
 
     var fnamevals = ['Tanner'];
-    alert(sessionStorage.getItem("temp"));
     var lnamevals = ['Eastmond']
     var namevals = ['Tanner Eastmond']
     var phonevals = ['801-884-9185']
@@ -266,7 +264,12 @@ function Main() {
     findInputBoxes(namexpath, namevals)
 
     // First name
-    findInputBoxes(fnamexpath, fnamevals)
+    chrome.storage.local.get(['fNameKey'], (result) => {
+      var fname = [];
+      fname.push(result.fNameKey);
+      findInputBoxes(fnamexpath, fname)
+    });
+    //findInputBoxes(fnamexpath, fnamevals)
 
     // Last name
     findInputBoxes(lnamexpath, lnamevals)

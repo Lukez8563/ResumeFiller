@@ -1,8 +1,7 @@
 function myFunction(){
-	var name = document.getElementById('fullname').value;
-	localStorage.setItem("temp", name);
-	alert(localStorage.getItem("temp"));
-	//localStorage.removeItem("name");
+	var firstName = document.getElementById('fullname').value;
+	chrome.storage.local.set({'fNameKey': firstName}, () => {
+        });
 }
 
 function Main(){
