@@ -261,7 +261,15 @@ function Main() {
 
     // Contact info
     // Full name
-    findInputBoxes(namexpath, namevals)
+    chrome.storage.local.get(['fNameKey', 'lNameKey'], (result) => {
+      var fullName = [];
+      var firstName = result.fNameKey;
+      var lastName = result.lNameKey;
+      fullNameResult = firstName.concat(' ', lastName);
+      fullName.push(fullNameResult);
+      findInputBoxes(namexpath, fullName)
+    });
+    //findInputBoxes(namexpath, namevals)
 
     // First name
     chrome.storage.local.get(['fNameKey'], (result) => {
@@ -272,38 +280,169 @@ function Main() {
     //findInputBoxes(fnamexpath, fnamevals)
 
     // Last name
-    findInputBoxes(lnamexpath, lnamevals)
+    chrome.storage.local.get(['lNameKey'], (result) => {
+      var lname = [];
+      lname.push(result.lNameKey);
+      findInputBoxes(lnamexpath, lname)
+    });
+    //findInputBoxes(lnamexpath, lnamevals)
 
     // Email
-    findInputBoxes(emailxpath, emailvals)
+    chrome.storage.local.get(['emailKey'], (result) => {
+      var email = [];
+      email.push(result.emailKey);
+      findInputBoxes(emailxpath, email)
+    });
+    //findInputBoxes(emailxpath, emailvals)
 
     // Phone number
-    findInputBoxes(phonexpath, phonevals)
+    chrome.storage.local.get(['phoneNumberKey'], (result) => {
+      var phone = [];
+      phone.push(result.phoneNumberKey);
+      findInputBoxes(phonexpath, phone)
+    });
+    //findInputBoxes(phonexpath, phonevals)
 
     // Address
-    findInputBoxes(addressxpath, addressvals)
-    findInputBoxes(cityxpath, cityvals)
-    findInputBoxes(statexpath, statevals)
-    findInputBoxes(countryxpath, countryvals)
-    findInputBoxes(zipxpath, zipvals)
+    chrome.storage.local.get(['addressOneKey', 'addressTwoKey'], (result) => {
+      var address = [];
+      address.push(result.addressOneKey);
+      address.push(result.addressTwoKey);
+      findInputBoxes(addressxpath, address)
+    });
+    //findInputBoxes(addressxpath, addressvals)
+
+    chrome.storage.local.get(['cityKey'], (result) => {
+      var city = [];
+      city.push(result.cityKey);
+      findInputBoxes(cityxpath, city)
+    });
+    //findInputBoxes(cityxpath, cityvals)
+
+    chrome.storage.local.get(['stateKey'], (result) => {
+      var state = [];
+      state.push(result.stateKey);
+      findInputBoxes(statexpath, state)
+    });
+    //findInputBoxes(statexpath, statevals)
+
+    chrome.storage.local.get(['countryKey'], (result) => {
+      var country = [];
+      country.push(result.countryKey);
+      findInputBoxes(countryxpath, country)
+    });
+    //findInputBoxes(countryxpath, countryvals)
+
+    chrome.storage.local.get(['zipcodeKey'], (result) => {
+      var zipcode = [];
+      zipcode.push(result.zipcodeKey);
+      findInputBoxes(zipxpath, zipcode)
+    });
+    //findInputBoxes(zipxpath, zipvals)
 
 
     // Education
     // Degrees
-    findInputBoxes(degreexpath, degreevals)
+    chrome.storage.local.get(['degreeOneKey', 'degreeTwoKey', 'degreeThreeKey'], (result) => {
+      var degree = [];
+      degree.push(result.degreeOneKey);
+      degree.push(result.degreeTwoKey);
+      degree.push(result.degreeThreeKey);
+      findInputBoxes(degreexpath, degree)
+    });
+    //findInputBoxes(degreexpath, degreevals)
 
     // Major/minor
-    findInputBoxes(majorxpath, majorvals, schoolxpath)
-    findInputBoxes(minorxpath, minorvals, schoolxpath)
+    chrome.storage.local.get(['majorOneKey', 'majorTwoKey', 'majorThreeKey'], (result) => {
+      var major = [];
+      major.push(result.majorOneKey);
+      major.push(result.majorTwoKey);
+      major.push(result.majorThreeKey);
+      findInputBoxes(majorxpath, major)
+    });
+    //findInputBoxes(majorxpath, majorvals, schoolxpath)
+    chrome.storage.local.get(['minorOneKey', 'minorTwoKey', 'minorThreeKey'], (result) => {
+      var minor = [];
+      minor.push(result.minorOneKey);
+      minor.push(result.minorTwoKey);
+      minor.push(result.minorThreeKey);
+      findInputBoxes(minorxpath, minor)
+    });
+    //findInputBoxes(minorxpath, minorvals, schoolxpath)
 
     // Dates
-    findInputBoxes(schoolfrommonthxpath, schoolfrommonthvals, schoolxpath)
-    findInputBoxes(schoolfromyearxpath, schoolfromyearvals, schoolxpath)
-    findInputBoxes(schooltomonthxpath, schooltomonthvals, schoolxpath)
-    findInputBoxes(schooltoyearxpath, schooltoyearvals, schoolxpath)
+    chrome.storage.local.get(['timeFrameOneStartKey', 'timeFrameTwoStartKey', 'timeFrameThreeStartKey'], (result) => {
+      var months = [];
+      var monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      var stringOneStart = result.timeFrameOneStartKey;
+      var splitOneStart = stringOneStart.split("-");
+      months.push(monthName[splitOneStart[1]-1]);
+      var stringTwoStart = result.timeFrameTwoStartKey;
+      var splitTwoStart = stringTwoStart.split("-");
+      months.push(monthName[splitTwoStart[1]-1]);
+      var stringThreeStart = result.timeFrameThreeStartKey;
+      var splitThreeStart = stringThreeStart.split("-");
+      months.push(monthName[splitThreeStart[1]-1]);
+      console.log(months);
+      findInputBoxes(schoolfrommonthxpath, months, schoolxpath)
+    });
+    //findInputBoxes(schoolfrommonthxpath, schoolfrommonthvals, schoolxpath)
+    chrome.storage.local.get(['timeFrameOneStartKey', 'timeFrameTwoStartKey', 'timeFrameThreeStartKey'], (result) => {
+      var years = [];
+      var stringOneStart = result.timeFrameOneStartKey;
+      var splitOneStart = stringOneStart.split("-");
+      years.push(splitOneStart[0]);
+      var stringTwoStart = result.timeFrameTwoStartKey;
+      var splitTwoStart = stringTwoStart.split("-");
+      years.push(splitTwoStart[0]);
+      var stringThreeStart = result.timeFrameThreeStartKey;
+      var splitThreeStart = stringThreeStart.split("-");
+      years.push(splitThreeStart[0]);
+      console.log(years);
+      findInputBoxes(schoolfromyearxpath, years, schoolxpath)
+    });
+    //findInputBoxes(schoolfromyearxpath, schoolfromyearvals, schoolxpath)
+    chrome.storage.local.get(['timeFrameOneEndKey', 'timeFrameTwoEndKey', 'timeFrameThreeEndKey'], (result) => {
+      var months = [];
+      var monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      var stringOneEnd = result.timeFrameOneEndKey;
+      var splitOneEnd = stringOneEnd.split('-');
+      months.push(monthName[splitOneEnd[1]-1]);
+      var stringTwoEnd = result.timeFrameTwoEndKey;
+      var splitTwoEnd = stringTwoEnd.split("-");
+      months.push(monthName[splitTwoEnd[1]-1]);
+      var stringThreeEnd = result.timeFrameThreeEndKey;
+      var splitThreeEnd = stringThreeEnd.split("-");
+      months.push(monthName[splitThreeEnd[1]-1]);
+      console.log(months);
+      findInputBoxes(schooltomonthxpath, months, schoolxpath)
+    });
+    //findInputBoxes(schooltomonthxpath, schooltomonthvals, schoolxpath)
+    chrome.storage.local.get(['timeFrameOneEndKey', 'timeFrameTwoEndKey', 'timeFrameThreeEndKey'], (result) => {
+      var years = [];
+      var stringOneEnd = result.timeFrameOneEndKey;
+      var splitOneEnd = stringOneEnd.split("-");
+      years.push(splitOneEnd[0]);
+      var stringTwoEnd = result.timeFrameTwoEndKey;
+      var splitTwoEnd = stringTwoEnd.split("-");
+      years.push(splitTwoEnd[0]);
+      var stringThreeEnd = result.timeFrameThreeEndKey;
+      var splitThreeEnd = stringThreeEnd.split("-");
+      years.push(splitThreeEnd[0]);
+      console.log(years);
+      findInputBoxes(schooltoyearxpath, years, schoolxpath)
+    });
+    //findInputBoxes(schooltoyearxpath, schooltoyearvals, schoolxpath)
 
     // School names
-    findInputBoxes(schoolxpath, schoolvals)
+    chrome.storage.local.get(['schoolOneKey', 'schoolTwoKey', 'schoolThreeKey'], (result) => {
+      var school = [];
+      school.push(result.schoolOneKey);
+      school.push(result.schoolTwoKey);
+      school.push(result.schoolThreeKey);
+      findInputBoxes(schoolxpath, school)
+    });
+    //findInputBoxes(schoolxpath, schoolvals)
 
 
     // Work history

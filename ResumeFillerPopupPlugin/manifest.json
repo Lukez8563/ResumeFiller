@@ -10,6 +10,6 @@
   "action": {
     "default_icon": "logo.png",
     "default_title": "Click to test",
-    "default_popup": "popup.html"
+    "default_popup": "menu.html"
   }
 }
