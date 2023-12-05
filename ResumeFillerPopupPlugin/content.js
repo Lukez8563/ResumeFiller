@@ -447,16 +447,79 @@ function Main() {
 
     // Work history
     // Company name
-    findInputBoxes(orgxpath, orgvals, jobxpath)
+    chrome.storage.local.get(['orgOneKey', 'orgTwoKey'], (result) => {
+      var orgs = [];
+      orgs.push(result.orgOneKey);
+      orgs.push(result.orgTwoKey);
+      console.log(orgs);
+      findInputBoxes(orgxpath, orgs, jobxpath)
+    });
+    //findInputBoxes(orgxpath, orgvals, jobxpath)
 
     // Dates
-    findInputBoxes(workfrommonthxpath, workfrommonthvals, jobxpath)
-    findInputBoxes(workfromyearxpath, workfromyearvals, jobxpath)
-    findInputBoxes(worktomonthxpath, worktomonthvals, jobxpath)
-    findInputBoxes(worktoyearxpath, worktoyearvals, jobxpath)
+    chrome.storage.local.get(['timeFrameJobOneStartKey', 'timeFrameJobTwoStartKey'], (result) => {
+      var months = [];
+      var monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      var stringOneStart = result.timeFrameJobOneStartKey;
+      var splitOneStart = stringOneStart.split("-");
+      months.push(monthName[splitOneStart[1]-1]);
+      var stringTwoStart = result.timeFrameJobTwoStartKey;
+      var splitTwoStart = stringTwoStart.split("-");
+      months.push(monthName[splitTwoStart[1]-1]);
+      console.log(months);
+      findInputBoxes(workfrommonthxpath, months, jobxpath)
+    });
+    //findInputBoxes(workfrommonthxpath, workfrommonthvals, jobxpath)
+
+    chrome.storage.local.get(['timeFrameJobOneStartKey', 'timeFrameJobTwoStartKey'], (result) => {
+      var years = [];
+      var stringOneStart = result.timeFrameJobOneStartKey;
+      var splitOneStart = stringOneStart.split("-");
+      years.push(splitOneStart[0]);
+      var stringTwoStart = result.timeFrameJobTwoStartKey;
+      var splitTwoStart = stringTwoStart.split("-");
+      years.push(splitTwoStart[0]);
+      console.log(years);
+      findInputBoxes(workfromyearxpath, years, jobxpath)
+    });
+    //findInputBoxes(workfromyearxpath, workfromyearvals, jobxpath)
+
+    chrome.storage.local.get(['timeFrameJobOneEndKey', 'timeFrameJobTwoEndKey'], (result) => {
+      var months = [];
+      var monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      var stringOneEnd = result.timeFrameJobOneEndKey;
+      var splitOneEnd = stringOneEnd.split('-');
+      months.push(monthName[splitOneEnd[1]-1]);
+      var stringTwoEnd = result.timeFrameJobTwoEndKey;
+      var splitTwoEnd = stringTwoEnd.split("-");
+      months.push(monthName[splitTwoEnd[1]-1]);
+      console.log(months);
+      findInputBoxes(worktomonthxpath, months, jobxpath)
+    });
+    //findInputBoxes(worktomonthxpath, worktomonthvals, jobxpath)
+
+    chrome.storage.local.get(['timeFrameJobOneEndKey', 'timeFrameJobTwoEndKey'], (result) => {
+      var years = [];
+      var stringOneEnd = result.timeFrameJobOneEndKey;
+      var splitOneEnd = stringOneEnd.split("-");
+      years.push(splitOneEnd[0]);
+      var stringTwoEnd = result.timeFrameJobTwoEndKey;
+      var splitTwoEnd = stringTwoEnd.split("-");
+      years.push(splitTwoEnd[0]);
+      console.log(years);
+      findInputBoxes(worktoyearxpath, years, jobxpath)
+    });
+    //findInputBoxes(worktoyearxpath, worktoyearvals, jobxpath)
 
     // Job title
-    findInputBoxes(jobxpath, jobvals)
+    chrome.storage.local.get(['jobOneKey', 'jobTwoKey'], (result) => {
+      var jobs = [];
+      jobs.push(result.jobOneKey);
+      jobs.push(result.jobTwoKey);
+      console.log(jobs);
+      findInputBoxes(jobxpath, jobs)
+    });
+    //findInputBoxes(jobxpath, jobvalss)
 }
 
 

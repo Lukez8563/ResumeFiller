@@ -110,6 +110,39 @@ function autopopulate(){
 	chrome.storage.local.get(['timeFrameThreeEndKey'], (result) => {
                	document.getElementById('timeFrameThreeEnd').value = result.timeFrameThreeEndKey;
 	});
+
+	chrome.storage.local.get(['jobOneKey'], (result) => {
+               	document.getElementById('jobOne').value = result.jobOneKey;
+	});
+
+	chrome.storage.local.get(['orgOneKey'], (result) => {
+               	document.getElementById('orgOne').value = result.orgOneKey;
+	});
+
+	chrome.storage.local.get(['timeFrameJobOneStartKey'], (result) => {
+               	document.getElementById('timeFrameJobOneStart').value = result.timeFrameJobOneStartKey;
+	});
+
+	chrome.storage.local.get(['timeFrameJobOneEndKey'], (result) => {
+               	document.getElementById('timeFrameJobOneEnd').value = result.timeFrameJobOneEndKey;
+	});
+
+	chrome.storage.local.get(['jobTwoKey'], (result) => {
+               	document.getElementById('jobTwo').value = result.jobTwoKey;
+	});
+
+	chrome.storage.local.get(['orgTwoKey'], (result) => {
+               	document.getElementById('orgTwo').value = result.orgTwoKey;
+	});
+
+	chrome.storage.local.get(['timeFrameJobTwoStartKey'], (result) => {
+               	document.getElementById('timeFrameJobTwoStart').value = result.timeFrameJobTwoStartKey;
+	});
+
+	chrome.storage.local.get(['timeFrameJobTwoEndKey'], (result) => {
+               	document.getElementById('timeFrameJobTwoEnd').value = result.timeFrameJobTwoEndKey;
+	});
+
 }
 
 // updates local variables
@@ -225,6 +258,38 @@ function myFunction(){
 	var timeFrameThreeEnd = document.getElementById('timeFrameThreeEnd').value;
 	chrome.storage.local.set({'timeFrameThreeEndKey': timeFrameThreeEnd}, () => {
         });
+
+	var jobOne = document.getElementById('jobOne').value;
+	chrome.storage.local.set({'jobOneKey': jobOne}, () => {
+        });
+
+	var orgOne = document.getElementById('orgOne').value;
+	chrome.storage.local.set({'orgOneKey': orgOne}, () => {
+        });
+
+	var timeFrameJobOneStart = document.getElementById('timeFrameJobOneStart').value;
+	chrome.storage.local.set({'timeFrameJobOneStartKey': timeFrameJobOneStart}, () => {
+        });
+
+	var timeFrameJobOneEnd = document.getElementById('timeFrameJobOneEnd').value;
+	chrome.storage.local.set({'timeFrameJobOneEndKey': timeFrameJobOneEnd}, () => {
+        });	
+
+	var jobTwo = document.getElementById('jobTwo').value;
+	chrome.storage.local.set({'jobTwoKey': jobTwo}, () => {
+        });
+
+	var orgTwo = document.getElementById('orgTwo').value;
+	chrome.storage.local.set({'orgTwoKey': orgTwo}, () => {
+        });
+
+	var timeFrameJobTwoStart = document.getElementById('timeFrameJobTwoStart').value;
+	chrome.storage.local.set({'timeFrameJobTwoStartKey': timeFrameJobTwoStart}, () => {
+        });
+
+	var timeFrameJobTwoEnd = document.getElementById('timeFrameJobTwoEnd').value;
+	chrome.storage.local.set({'timeFrameJobTwoEndKey': timeFrameJobTwoEnd}, () => {
+        });	
 }
 
 document.getElementById("setInfo").addEventListener("click", myFunction);
