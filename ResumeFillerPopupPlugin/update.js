@@ -1,295 +1,46 @@
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Object/values
+
+//autopopulate the html popup
 function autopopulate(){
-	chrome.storage.local.get(['fNameKey'], (result) => {
-               	document.getElementById('fName').value = result.fNameKey;
-	});
+	keyList = ['fNameKey', 'lNameKey', 'emailKey', 'phoneNumberKey', 'addressOneKey', 'addressTwoKey', 
+		'cityKey', 'stateKey', 'countryKey', 'zipcodeKey', 'schoolOneKey', 'degreeOneKey', 'majorOneKey',
+		'minorOneKey', 'timeFrameOneStartKey', 'timeFrameOneEndKey', 'schoolTwoKey', 'degreeTwoKey',
+		'majorTwoKey', 'minorTwoKey', 'timeFrameTwoStartKey', 'timeFrameTwoEndKey', 'schoolThreeKey', 
+		'degreeThreeKey', 'majorThreeKey', 'minorThreeKey', 'timeFrameThreeStartKey', 'timeFrameThreeEndKey',
+		'jobOneKey', 'orgOneKey', 'timeFrameJobOneStartKey', 'timeFrameJobOneEndKey', 'jobTwoKey', 'orgTwoKey',
+		'timeFrameJobTwoStartKey', 'timeFrameJobTwoEndKey'];
 
-	chrome.storage.local.get(['lNameKey'], (result) => {
-               	document.getElementById('lName').value = result.lNameKey;
+	chrome.storage.local.get(keyList, (result) => {
+		keysArray = Object.keys(result);
+		valuesArray = Object.values(result);
+		for (let i = 0; i < keysArray.length; i++) {
+			keysArray[i] = keysArray[i].slice(0, -3);
+			console.log(valuesArray[i]);
+			if (valuesArray[i] == undefined) {
+				valuesArray[i] = "";
+			}
+			document.getElementById(keysArray[i]).value = valuesArray[i];
+		}
 	});
-
-	chrome.storage.local.get(['emailKey'], (result) => {
-               	document.getElementById('email').value = result.emailKey;
-	});
-
-	chrome.storage.local.get(['phoneNumberKey'], (result) => {
-               	document.getElementById('phoneNumber').value = result.phoneNumberKey;
-	});
-
-	chrome.storage.local.get(['addressOneKey'], (result) => {
-               	document.getElementById('addressOne').value = result.addressOneKey;
-	});
-
-	chrome.storage.local.get(['addressTwoKey'], (result) => {
-               	document.getElementById('addressTwo').value = result.addressTwoKey;
-	});
-
-	chrome.storage.local.get(['cityKey'], (result) => {
-               	document.getElementById('city').value = result.cityKey;
-	});
-
-	chrome.storage.local.get(['stateKey'], (result) => {
-               	document.getElementById('state').value = result.stateKey;
-	});
-
-	chrome.storage.local.get(['countryKey'], (result) => {
-               	document.getElementById('country').value = result.countryKey;
-	});
-
-	chrome.storage.local.get(['zipcodeKey'], (result) => {
-               	document.getElementById('zipcode').value = result.zipcodeKey;
-	});
-
-	chrome.storage.local.get(['schoolOneKey'], (result) => {
-               	document.getElementById('schoolOne').value = result.schoolOneKey;
-	});
-
-	chrome.storage.local.get(['degreeOneKey'], (result) => {
-               	document.getElementById('degreeOne').value = result.degreeOneKey;
-	});
-
-	chrome.storage.local.get(['majorOneKey'], (result) => {
-               	document.getElementById('majorOne').value = result.majorOneKey;
-	});
-
-	chrome.storage.local.get(['minorOneKey'], (result) => {
-               	document.getElementById('minorOne').value = result.minorOneKey;
-	});
-
-	chrome.storage.local.get(['timeFrameOneStartKey'], (result) => {
-               	document.getElementById('timeFrameOneStart').value = result.timeFrameOneStartKey;
-	});
-
-	chrome.storage.local.get(['timeFrameOneEndKey'], (result) => {
-               	document.getElementById('timeFrameOneEnd').value = result.timeFrameOneEndKey;
-	});
-
-	chrome.storage.local.get(['schoolTwoKey'], (result) => {
-               	document.getElementById('schoolTwo').value = result.schoolTwoKey;
-	});
-
-	chrome.storage.local.get(['degreeTwoKey'], (result) => {
-               	document.getElementById('degreeTwo').value = result.degreeTwoKey;
-	});
-
-	chrome.storage.local.get(['majorTwoKey'], (result) => {
-               	document.getElementById('majorTwo').value = result.majorTwoKey;
-	});
-
-	chrome.storage.local.get(['minorTwoKey'], (result) => {
-               	document.getElementById('minorTwo').value = result.minorTwoKey;
-	});
-
-	chrome.storage.local.get(['timeFrameTwoStartKey'], (result) => {
-               	document.getElementById('timeFrameTwoStart').value = result.timeFrameTwoStartKey;
-	});
-
-	chrome.storage.local.get(['timeFrameTwoEndKey'], (result) => {
-               	document.getElementById('timeFrameTwoEnd').value = result.timeFrameTwoEndKey;
-	});
-
-	chrome.storage.local.get(['schoolThreeKey'], (result) => {
-               	document.getElementById('schoolThree').value = result.schoolThreeKey;
-	});
-
-	chrome.storage.local.get(['degreeThreeKey'], (result) => {
-               	document.getElementById('degreeThree').value = result.degreeThreeKey;
-	});
-
-	chrome.storage.local.get(['majorThreeKey'], (result) => {
-               	document.getElementById('majorThree').value = result.majorThreeKey;
-	});
-
-	chrome.storage.local.get(['minorThreeKey'], (result) => {
-               	document.getElementById('minorThree').value = result.minorThreeKey;
-	});
-
-	chrome.storage.local.get(['timeFrameThreeStartKey'], (result) => {
-               	document.getElementById('timeFrameThreeStart').value = result.timeFrameThreeStartKey;
-	});
-
-	chrome.storage.local.get(['timeFrameThreeEndKey'], (result) => {
-               	document.getElementById('timeFrameThreeEnd').value = result.timeFrameThreeEndKey;
-	});
-
-	chrome.storage.local.get(['jobOneKey'], (result) => {
-               	document.getElementById('jobOne').value = result.jobOneKey;
-	});
-
-	chrome.storage.local.get(['orgOneKey'], (result) => {
-               	document.getElementById('orgOne').value = result.orgOneKey;
-	});
-
-	chrome.storage.local.get(['timeFrameJobOneStartKey'], (result) => {
-               	document.getElementById('timeFrameJobOneStart').value = result.timeFrameJobOneStartKey;
-	});
-
-	chrome.storage.local.get(['timeFrameJobOneEndKey'], (result) => {
-               	document.getElementById('timeFrameJobOneEnd').value = result.timeFrameJobOneEndKey;
-	});
-
-	chrome.storage.local.get(['jobTwoKey'], (result) => {
-               	document.getElementById('jobTwo').value = result.jobTwoKey;
-	});
-
-	chrome.storage.local.get(['orgTwoKey'], (result) => {
-               	document.getElementById('orgTwo').value = result.orgTwoKey;
-	});
-
-	chrome.storage.local.get(['timeFrameJobTwoStartKey'], (result) => {
-               	document.getElementById('timeFrameJobTwoStart').value = result.timeFrameJobTwoStartKey;
-	});
-
-	chrome.storage.local.get(['timeFrameJobTwoEndKey'], (result) => {
-               	document.getElementById('timeFrameJobTwoEnd').value = result.timeFrameJobTwoEndKey;
-	});
-
 }
 
 // updates local variables
 function myFunction(){
-	var firstName = document.getElementById('fName').value;
-	chrome.storage.local.set({'fNameKey': firstName}, () => {
-        });
+	keyList = ['fNameKey', 'lNameKey', 'emailKey', 'phoneNumberKey', 'addressOneKey', 'addressTwoKey', 
+		'cityKey', 'stateKey', 'countryKey', 'zipcodeKey', 'schoolOneKey', 'degreeOneKey', 'majorOneKey',
+		'minorOneKey', 'timeFrameOneStartKey', 'timeFrameOneEndKey', 'schoolTwoKey', 'degreeTwoKey',
+		'majorTwoKey', 'minorTwoKey', 'timeFrameTwoStartKey', 'timeFrameTwoEndKey', 'schoolThreeKey', 
+		'degreeThreeKey', 'majorThreeKey', 'minorThreeKey', 'timeFrameThreeStartKey', 'timeFrameThreeEndKey',
+		'jobOneKey', 'orgOneKey', 'timeFrameJobOneStartKey', 'timeFrameJobOneEndKey', 'jobTwoKey', 'orgTwoKey',
+		'timeFrameJobTwoStartKey', 'timeFrameJobTwoEndKey'];
 
-	var lastName = document.getElementById('lName').value;
-	chrome.storage.local.set({'lNameKey': lastName}, () => {
-        });
+	for (let i = 0; i < keyList.length; i++) {
+		var id = keyList[i].slice(0, -3);
+		var temp = document.getElementById(id).value
+		chrome.storage.local.set({ [ keyList[i] ]: temp}, () => {});
+	}
 
-	var email = document.getElementById('email').value;
-	chrome.storage.local.set({'emailKey': email}, () => {
-        });
-
-	var phoneNumber = document.getElementById('phoneNumber').value;
-	chrome.storage.local.set({'phoneNumberKey': phoneNumber}, () => {
-        });
-
-	var addressOne = document.getElementById('addressOne').value;
-	chrome.storage.local.set({'addressOneKey': addressOne}, () => {
-        });
-
-	var addressTwo = document.getElementById('addressTwo').value;
-	chrome.storage.local.set({'addressTwoKey': addressTwo}, () => {
-        });
-
-	var city = document.getElementById('city').value;
-	chrome.storage.local.set({'cityKey': city}, () => {
-        });
-
-	var state = document.getElementById('state').value;
-	chrome.storage.local.set({'stateKey': state}, () => {
-        });
-
-	var country = document.getElementById('country').value;
-	chrome.storage.local.set({'countryKey': country}, () => {
-        });
-
-	var zipcode = document.getElementById('zipcode').value;
-	chrome.storage.local.set({'zipcodeKey': zipcode}, () => {
-        });
-
-	var schoolOne = document.getElementById('schoolOne').value;
-	chrome.storage.local.set({'schoolOneKey': schoolOne}, () => {
-        });
-
-	var degreeOne = document.getElementById('degreeOne').value;
-	chrome.storage.local.set({'degreeOneKey': degreeOne}, () => {
-        });
-
-	var majorOne = document.getElementById('majorOne').value;
-	chrome.storage.local.set({'majorOneKey': majorOne}, () => {
-        });
-
-	var minorOne = document.getElementById('minorOne').value;
-	chrome.storage.local.set({'minorOneKey': minorOne}, () => {
-        });
-
-	var timeFrameOneStart = document.getElementById('timeFrameOneStart').value;
-	chrome.storage.local.set({'timeFrameOneStartKey': timeFrameOneStart}, () => {
-        });
-
-	var timeFrameOneEnd = document.getElementById('timeFrameOneEnd').value;
-	chrome.storage.local.set({'timeFrameOneEndKey': timeFrameOneEnd}, () => {
-        });
-
-	var schoolTwo = document.getElementById('schoolTwo').value;
-	chrome.storage.local.set({'schoolTwoKey': schoolTwo}, () => {
-        });
-
-	var degreeTwo = document.getElementById('degreeTwo').value;
-	chrome.storage.local.set({'degreeTwoKey': degreeTwo}, () => {
-        });
-
-	var majorTwo = document.getElementById('majorTwo').value;
-	chrome.storage.local.set({'majorTwoKey': majorTwo}, () => {
-        });
-
-	var minorTwo = document.getElementById('minorTwo').value;
-	chrome.storage.local.set({'minorTwoKey': minorTwo}, () => {
-        });
-
-	var timeFrameTwoStart = document.getElementById('timeFrameTwoStart').value;
-	chrome.storage.local.set({'timeFrameTwoStartKey': timeFrameTwoStart}, () => {
-        });
-
-	var timeFrameTwoEnd = document.getElementById('timeFrameTwoEnd').value;
-	chrome.storage.local.set({'timeFrameTwoEndKey': timeFrameTwoEnd}, () => {
-        });
-
-	var schoolThree = document.getElementById('schoolThree').value;
-	chrome.storage.local.set({'schoolThreeKey': schoolThree}, () => {
-        });
-
-	var degreeThree = document.getElementById('degreeThree').value;
-	chrome.storage.local.set({'degreeThreeKey': degreeThree}, () => {
-        });
-
-	var majorThree = document.getElementById('majorThree').value;
-	chrome.storage.local.set({'majorThreeKey': majorThree}, () => {
-        });
-
-	var minorThree = document.getElementById('minorThree').value;
-	chrome.storage.local.set({'minorThreeKey': minorThree}, () => {
-        });
-
-	var timeFrameThreeStart = document.getElementById('timeFrameThreeStart').value;
-	chrome.storage.local.set({'timeFrameThreeStartKey': timeFrameThreeStart}, () => {
-        });
-
-	var timeFrameThreeEnd = document.getElementById('timeFrameThreeEnd').value;
-	chrome.storage.local.set({'timeFrameThreeEndKey': timeFrameThreeEnd}, () => {
-        });
-
-	var jobOne = document.getElementById('jobOne').value;
-	chrome.storage.local.set({'jobOneKey': jobOne}, () => {
-        });
-
-	var orgOne = document.getElementById('orgOne').value;
-	chrome.storage.local.set({'orgOneKey': orgOne}, () => {
-        });
-
-	var timeFrameJobOneStart = document.getElementById('timeFrameJobOneStart').value;
-	chrome.storage.local.set({'timeFrameJobOneStartKey': timeFrameJobOneStart}, () => {
-        });
-
-	var timeFrameJobOneEnd = document.getElementById('timeFrameJobOneEnd').value;
-	chrome.storage.local.set({'timeFrameJobOneEndKey': timeFrameJobOneEnd}, () => {
-        });	
-
-	var jobTwo = document.getElementById('jobTwo').value;
-	chrome.storage.local.set({'jobTwoKey': jobTwo}, () => {
-        });
-
-	var orgTwo = document.getElementById('orgTwo').value;
-	chrome.storage.local.set({'orgTwoKey': orgTwo}, () => {
-        });
-
-	var timeFrameJobTwoStart = document.getElementById('timeFrameJobTwoStart').value;
-	chrome.storage.local.set({'timeFrameJobTwoStartKey': timeFrameJobTwoStart}, () => {
-        });
-
-	var timeFrameJobTwoEnd = document.getElementById('timeFrameJobTwoEnd').value;
-	chrome.storage.local.set({'timeFrameJobTwoEndKey': timeFrameJobTwoEnd}, () => {
-        });	
+	window.close();
 }
 
 document.getElementById("setInfo").addEventListener("click", myFunction);

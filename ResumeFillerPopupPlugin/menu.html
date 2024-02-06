@@ -1,7 +1,69 @@
 <html>
-	<body id="bodyMenu">
-	 	<button id="update">Update Your Information</button>
-	 	<button id="autofill">Autofill!</button>
-		<script type="text/javascript" src="menu.js"></script>
-	</body>
+<head>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lilita+One">
+
+	<style type="text/css">
+		html {
+			width:200px;
+			height:400px;
+		}
+
+		h1 {
+			font-size: 20px;
+			line-height: 30px;
+		}
+
+		#bodyMenu {
+			text-align: center;
+			font-family: Helvetica;
+			color: rgb(92,42,11);
+			padding: 10px;
+			background-size: 100%;
+			background-color: lightblue;
+			background-image: linear-gradient(to bottom right, rgb(228, 252, 234), rgb(202, 221, 253));
+			background-repeat: repeat;
+		}
+
+		.btn {
+			background-size: 100%;
+			background-color: orange;
+			background-image: linear-gradient(to bottom right, rgb(120, 218, 144), rgb(45, 114, 234));
+  			border: none;
+			display: inline-block;
+			color: rgb(92,42,11);
+			letter-spacing: 0.75px;
+  			text-align: center;
+			font-family: "Lilita One", serif;
+	  		font-size: 14px;
+		  	width: 160px;
+			height: 50px;
+			margin: 5px;
+			border-radius: 12px;
+		}
+
+		.btn:hover {
+			background-image: linear-gradient(to bottom right, rgb(245, 208, 96), rgb(237, 144, 82));
+		}
+</style>
+</head>
+
+
+<body id="bodyMenu">
+
+	<h1><b>Job Application Autofill</b></h1>
+
+	<p> Welcome! To get started, press the "Update Information" button and enter your information you wish to autofill.</p>
+	<p> Navigate to a job application page and press the "Autofill Information" button to enter the fields with your information.</p>
+ 	
+	<button id="update" class="btn">
+		Update Information
+	</button>
+
+ 	<button id="autofill" class="btn">
+		Autofill
+	</button>
+
+	<script type="text/javascript" src="menu.js"></script>
+</body>
+
 </html>
