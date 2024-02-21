@@ -5,7 +5,7 @@
   "description": "Test Basic Extension Features",
   "version": "1.1.0",
 
-  "permissions": ["tabs", "alarms", "activeTab", "scripting", "storage"],
+  "permissions": ["tabs", "activeTab", "scripting", "storage"],
 
   "action": {
     "default_icon": "logo.png",

@@ -8,7 +8,8 @@ function autopopulate(){
 		'majorTwoKey', 'minorTwoKey', 'timeFrameTwoStartKey', 'timeFrameTwoEndKey', 'schoolThreeKey', 
 		'degreeThreeKey', 'majorThreeKey', 'minorThreeKey', 'timeFrameThreeStartKey', 'timeFrameThreeEndKey',
 		'jobOneKey', 'orgOneKey', 'timeFrameJobOneStartKey', 'timeFrameJobOneEndKey', 'jobTwoKey', 'orgTwoKey',
-		'timeFrameJobTwoStartKey', 'timeFrameJobTwoEndKey'];
+		'timeFrameJobTwoStartKey', 'timeFrameJobTwoEndKey', 'jobThreeKey', 'orgThreeKey', 
+		'timeFrameJobThreeStartKey', 'timeFrameJobThreeEndKey'];
 
 	chrome.storage.local.get(keyList, (result) => {
 		keysArray = Object.keys(result);
@@ -32,7 +33,8 @@ function myFunction(){
 		'majorTwoKey', 'minorTwoKey', 'timeFrameTwoStartKey', 'timeFrameTwoEndKey', 'schoolThreeKey', 
 		'degreeThreeKey', 'majorThreeKey', 'minorThreeKey', 'timeFrameThreeStartKey', 'timeFrameThreeEndKey',
 		'jobOneKey', 'orgOneKey', 'timeFrameJobOneStartKey', 'timeFrameJobOneEndKey', 'jobTwoKey', 'orgTwoKey',
-		'timeFrameJobTwoStartKey', 'timeFrameJobTwoEndKey'];
+		'timeFrameJobTwoStartKey', 'timeFrameJobTwoEndKey', 'jobThreeKey', 'orgThreeKey', 
+		'timeFrameJobThreeStartKey', 'timeFrameJobThreeEndKey'];
 
 	for (let i = 0; i < keyList.length; i++) {
 		var id = keyList[i].slice(0, -3);
@@ -40,7 +42,8 @@ function myFunction(){
 		chrome.storage.local.set({ [ keyList[i] ]: temp}, () => {});
 	}
 
-	window.close();
+	window.location.href="menu.html";
+	chrome.storage.local.set({["updatedInfo"]: "hi"}, () => {});
 }
 
 document.getElementById("setInfo").addEventListener("click", myFunction);

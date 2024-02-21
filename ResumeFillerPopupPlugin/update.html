@@ -1,73 +1,291 @@
+<!-- https://stackoverflow.com/questions/43677055/move-label-of-input-box-when-a-user-focuses-on-this-without-require -->  
 <html>
-	<body id="body-popup">
-		<label for="fNameText">First Name:</label><br>
-		<input type="text" id="fName" value = "">
+	<head>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lilita+One">
+		<style>
+			input[type="month"] {
+				font-family: sans-serif;
+			}
 
-		<label for="lNameText">Last Name:</label><br>
-		<input type="text" id="lName" value = "">
+			html {
+				width:300px;
+				height: 400px;				
+			}
 
-		<label for="emailText">Email:</label><br>
-		<input type="text" id="email" value = "">
+			.center {
+				position: relative;
+				padding:15px 10px;
+				border-radius: 25px;
+			}
 
-		<label for="phoneNumberText">Phone Number:</label><br>
-		<input type="text" id="phoneNumber" value = "">
+			.center .inputbox {
+				position: relative;
+				width: 250px;
+				height: 25px;
+				margin-bottom: 40px;
+			}
 
-		<label for="addressOneText">Address Line 1:</label><br>
-		<input type="text" id="addressOne" value = "">
+			.center .inputbox input {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				border: 2px solid #000;
+				outline: none;
+				background: none;
+				padding: 5px;
+				border-radius: 10px;
+				font-size: 1.2em;
+			}
 
-		<label for="addressTwoText">Address Line 2:</label><br>
-		<input type="text" id="addressTwo" value = "">
+			.center .inputbox:first-child {
+				margin-top: 10px;
+			}
 
-		<label for="cityText">City:</label><br>
-		<input type="text" id="city" value = "">
+			.center .inputbox:last-child {
+				margin-bottom: 0px;
+			}
 
-		<label for="stateText">State:</label><br>
-		<input type="text" id="state" value = "">
+			.center .inputbox span {
+				position: absolute;
+				top: 10px;
+				left: 20px;
+				font-size: 1em;
+				transition: 0.6s;
+				font-family: sans-serif;
+			}
 
-		<label for="countryText">Country:</label><br>
-		<input type="text" id="country" value = "">
+			.center .inputbox input:focus ~ span,
+			.center .inputbox input:valid ~ span {
+				transform: translateX(-13px) translateY(-25px);
+				font-size: 1em;
+			}
 
-		<label for="zipcodeText">Zipcode:</label><br>
-		<input type="text" id="zipcode" value = "">
+			.btn {
+				background-size: 100%;
+				background-color: orange;
+				background-image: linear-gradient(to bottom right, rgb(120, 218, 144), rgb(45, 114, 234));
+				border: none;
+				display: inline-block;
+				color: rgb(92,42,11);
+				letter-spacing: 0.75px;
+				text-align: center;
+				font-family: "Lilita One", serif;
+				font-size: 14px;
+				width: 250px;
+				height: 50px;
+				margin: 5px;
+				border-radius: 12px;
+			}
 
-		<label for="schoolOneText">School One:</label>
-		<input type="text" id="schoolOne" value = "">
-		<label for="degreeOneText">Degree:</label>
-		<input type="text" id="degreeOne" value = "">
-		<label for="majorOneText">Major:</label>
-		<input type="text" id="majorOne" value = "">
-		<label for="minorOneText">Minor:</label>
-		<input type="text" id="minorOne" value = "">
-		<label for="degreeOneText">School One:</label>
-		<input type="month" id="timeFrameOneStart" value = "">
-		<input type="month" id="timeFrameOneEnd" value = "">
+			.btn:hover {
+				background-image: linear-gradient(to bottom right, rgb(245, 208, 96), rgb(237, 144, 82));
+			}
+		</style>
+	</head>
 
-		<input type="text" id="schoolTwo" value = "">
-		<input type="text" id="degreeTwo" value = "">
-		<input type="text" id="majorTwo" value = "">
-		<input type="text" id="minorTwo" value = "">
-		<input type="month" id="timeFrameTwoStart" value = "">
-		<input type="month" id="timeFrameTwoEnd" value = "">
+	<div class="center">
+		<div class="inputbox">
+			<input type="text" required="required" id="fName">
+			<span>First Name</span>
+		</div>
 
-		<input type="text" id="schoolThree" value = "">
-		<input type="text" id="degreeThree" value = "">
-		<input type="text" id="majorThree" value = "">
-		<input type="text" id="minorThree" value = "">
-		<input type="month" id="timeFrameThreeStart" value = "">
-		<input type="month" id="timeFrameThreeEnd" value = "">
+		<div class="inputbox">
+			<input type="text" required="required" id="lName">
+			<span>Last Name</span>
+		</div>
 
-//job, org, timeframe
-		<input type="text" id="jobOne" value = "">
-		<input type="text" id="orgOne" value = "">
-		<input type="month" id="timeFrameJobOneStart" value = "">
-		<input type="month" id="timeFrameJobOneEnd" value = "">
+		<div class="inputbox">
+			<input type="text" required="required" id="email">
+			<span>Email</span>
+		</div>
 
-		<input type="text" id="jobTwo" value = "">
-		<input type="text" id="orgTwo" value = "">
-		<input type="month" id="timeFrameJobTwoStart" value = "">
-		<input type="month" id="timeFrameJobTwoEnd" value = "">
+		<div class="inputbox">
+			<input type="text" required="required" id="phoneNumber">
+			<span>Phone Number</span>
+		</div>
 
-	 	<button id="setInfo">Update</button>
+		<div class="inputbox">
+			<input type="text" required="required" id="addressOne">
+			<span>Address Line 1</span>
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="addressTwo">
+			<span>Address Line 2</span>
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="city">
+			<span>City</span>
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="state">
+			<span>State</span>
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="country">
+			<span>Country</span>
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="zipcode">
+			<span>Zipcode</span>
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="schoolOne">
+			<span>School One</span>
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="degreeOne">
+			<span>Degree</span>
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="majorOne">
+			<span>Major</span>
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="minorOne">
+			<span>Minor</span>
+		</div>
+
+		<label>Marticulation Date</label>
+		<div class="inputbox">
+			<input type="month" required="required" id="timeFrameOneStart">
+		</div>
+
+		<label>Graduation Date</label>
+		<div class="inputbox">
+			<input type="month" required="required" id="timeFrameOneEnd">
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="schoolTwo">
+			<span>School Two</span>
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="degreeTwo">
+			<span>Degree</span>
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="majorTwo">
+			<span>Major</span>
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="minorTwo">
+			<span>Minor</span>
+		</div>
+
+		<label>Marticulation Date</label>
+		<div class="inputbox">
+			<input type="month" required="required" id="timeFrameTwoStart">
+		</div>
+
+		<label>Graduation Date</label>
+		<div class="inputbox">
+			<input type="month" required="required" id="timeFrameTwoEnd">
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="schoolThree">
+			<span>School Three</span>
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="degreeThree">
+			<span>Degree</span>
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="majorThree">
+			<span>Major</span>
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="minorThree">
+			<span>Minor</span>
+		</div>
+
+		<label>Marticulation Date</label>
+		<div class="inputbox">
+			<input type="month" required="required" id="timeFrameThreeStart">
+		</div>
+
+		<label>Graduation Date</label>
+		<div class="inputbox">
+			<input type="month" required="required" id="timeFrameThreeEnd">
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="jobOne">
+			<span>Job One</span>
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="orgOne">
+			<span>Organization One</span>
+		</div>
+
+		<label>Begin Date</label>
+		<div class="inputbox">
+			<input type="month" required="required" id="timeFrameJobOneStart">
+		</div>
+
+		<label>End Date</label>
+		<div class="inputbox">
+			<input type="month" required="required" id="timeFrameJobOneEnd">
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="jobTwo">
+			<span>Job Two</span>
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="orgTwo">
+			<span>Organization Two</span>
+		</div>
+
+		<label>Begin Date</label>
+		<div class="inputbox">
+			<input type="month" required="required" id="timeFrameJobTwoStart">
+		</div>
+
+		<label>End Date</label>
+		<div class="inputbox">
+			<input type="month" required="required" id="timeFrameJobTwoEnd">
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="jobThree">
+			<span>Job Three</span>
+		</div>
+
+		<div class="inputbox">
+			<input type="text" required="required" id="orgThree">
+			<span>Organization Three</span>
+		</div>
+
+		<label>Begin Date</label>
+		<div class="inputbox">
+			<input type="month" required="required" id="timeFrameJobThreeStart">
+		</div>
+
+		<label>End Date</label>
+		<div class="inputbox">
+			<input type="month" required="required" id="timeFrameJobThreeEnd">
+		</div>
+
+		<button id="setInfo" class="btn">Update</button>
 		<script type="text/javascript" src="update.js"></script>
-	</body>
+	</div>
 </html>
